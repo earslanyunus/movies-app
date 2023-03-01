@@ -1,13 +1,11 @@
-import Text from "./components/input/Text.jsx";
-import Button from "./components/button/Button.jsx";
+import {Outlet} from "react-router-dom";
 
 function App() {
 
   return (
-    <div className="App">
-      <Text/>
-        <Button type={'link'}/>
-    </div>
+    <>
+        <Outlet/>
+    </>
   )
 }
 
