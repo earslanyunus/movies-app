@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 import File from "../components/input/File.jsx";
 import fullLogo from "../assets/LogoandLogotype.svg";
 import mailIcon from "../assets/mailIcon.svg";
+import {signUp, signupWithGoogle} from "../firebase/index.js";
+import {useNavigate} from "react-router-dom";
 
 const signUpSchema = Yup.object().shape({
     username: Yup.string().min(2, 'Too Short!').max(12, 'Too Long!').required('Required'),
@@ -16,6 +18,7 @@ const signUpSchema = Yup.object().shape({
 })
 
 function Signup() {
+    const navigate = useNavigate();
     return (
         // 20 px to rem =
         <div className='px-4 pt-14 pb-8 flex w-full lg:p-0 lg:h-screen lg:max-h-screen lg:min-h-[768px]'>
@@ -35,8 +38,15 @@ function Signup() {
                         }
                         }
                         validationSchema={signUpSchema}
-                        onSubmit={values => {
-                            console.log(values)
+                        onSubmit={async values => {
+
+                            try {
+                                await signUp(values.email, values.password, values.username, values.image)
+                                navigate('/home')
+
+                            }catch (e) {
+                                console.log(e)
+                            }
                         }
                         }
                     >
@@ -63,14 +73,15 @@ function Signup() {
                                     <ErrorMessage name={'image'}/>
                                     </div>
                                     <div className={'mt-1'}>
-                                    <Button text={'Sign up'} type={'submit'} variant={'primary'} wFull={true}/>
-                                    <Button text={'Sign up with Google'} type={'submit'} variant={'secondary'} wFull={true} isSocial={true} extraClass={'mt-4'}/>
+                                    <Button  text={'Sign up'} type={'submit'} variant={'primary'} wFull={true}/>
                                     </div>
                                 </Form>
                             )
                         }
                         }
                     </Formik>
+                    <Button onClick={signupWithGoogle} text={'Sign up with Google'} type={'button'} variant={'secondary'} wFull={true} isSocial={true} extraClass={'mt-4'}/>
+
                     <div className='flex mt-8'>
                     <p>Already have an account?</p>
                         <Button text={'Log in'} type={'submit'} variant={'link'} extraClass={'ml-1'}/>
