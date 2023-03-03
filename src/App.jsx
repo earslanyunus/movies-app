@@ -1,14 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import Text from "./components/input/Text.jsx";
+import {Outlet, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+    //page open and navigate to home
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate('/home')
+    }, [])
+
+
 
   return (
-    <div className="App">
-      <Text/>
-    </div>
+    <>
+        <Outlet/>
+    </>
   )
 }
 
