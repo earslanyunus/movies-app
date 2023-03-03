@@ -3,9 +3,7 @@ import {useField} from "formik";
 
 function File({label, ...props}) {
     const [field, meta, helpers] = useField(props);
-    console.log('field', field)
-    console.log('meta', meta)
-    console.log('helpers', helpers)
+
 
     const clickHandler = () => {
         inputRef.current.click();
@@ -21,7 +19,7 @@ function File({label, ...props}) {
         <label>
 
             {label}
-            <button  onClick={clickHandler} className='w-full border rounded-lg border-gray-200 flex flex-col items-center justify-center py-4 px-6'>
+            <button type={'button'}  onClick={clickHandler} className='w-full border rounded-lg border-gray-200 flex flex-col items-center justify-center py-4 px-6'>
 
                 <p className='text-text-sm font-semibold text-primary-700'>Click to upload</p>
                 <p className='text-text-xs font-normal text-gray-600'>PNG, JPG or GIF (max. 20mb)</p>
