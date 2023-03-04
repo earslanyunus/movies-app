@@ -6,6 +6,9 @@ import Signup from "./views/Signup.jsx";
 import Store from "./store/index.js";
 import {Provider} from "react-redux";
 import PrivateRoute from "./router/PrivateRoute.jsx";
+import Login from "./views/Login.jsx";
+import Home from "./views/Home.jsx";
+import './style.css'
 const router = createBrowserRouter([{
     path: '/',
     element: <App/>,
@@ -16,7 +19,12 @@ const router = createBrowserRouter([{
         },
         {
             path: '/home',
-            element: <div>Home</div>,
+            element: <Home/>,
+
+        },
+        {
+            path: '/login',
+            element:<Login/>
 
         }
     ]

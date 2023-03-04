@@ -97,7 +97,7 @@ function Signup() {
                     </div>
                 </div>
             </div>
-            <div className='hidden lg:block lg:w-1/2 bg-signUp bg-cover'>
+            <div className='hidden lg:block lg:w-1/2 bg-signup bg-cover bg-center'>
             </div>
         </div>
 
