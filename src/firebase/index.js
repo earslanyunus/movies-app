@@ -5,12 +5,14 @@ import {
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
+    signInWithEmailAndPassword,
     signInWithPopup,
     updateProfile
 } from "firebase/auth";
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage";
 import {doc, getFirestore, setDoc} from "firebase/firestore";
 import store from "../store/index.js";
+import {useNavigate} from "react-router-dom";
 
 
 const firebaseConfig={
@@ -85,7 +87,38 @@ const signupWithGoogle = async () => {
 
 
 }
+const signIn = async (email, password) => {
+    try {
+        return await signInWithEmailAndPassword(auth, email, password)
 
+    }
+    catch (error) {
+
+
+        switch (error.code) {
+            case 'auth/user-not-found':
+                throw 'Bu kullanıcı adı veya e-posta adresi kayıtlı değil.';
+            case 'auth/wrong-password':
+                throw 'Şifreniz yanlış, lütfen tekrar deneyin.';
+            case 'auth/invalid-email':
+                throw 'Geçersiz bir e-posta adresi girdiniz.';
+            default:
+                throw 'Bir hata oluştu, lütfen daha sonra tekrar deneyin.';
+        }
+    }
+}
+const signInWithGoogle = async () => {
+    try {
+
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+
+
+    }
+    catch (e) {
+        throw e
+    }
+}
 const signOut = async () => {
     try {
         await auth.signOut()
@@ -108,4 +141,4 @@ onAuthStateChanged(auth, (user) => {
 )
 
 
-export { signUp,signupWithGoogle ,signOut}
+export { signUp,signupWithGoogle ,signOut,signIn,signInWithGoogle}
