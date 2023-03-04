@@ -86,6 +86,15 @@ const signupWithGoogle = async () => {
 
 }
 
+const signOut = async () => {
+    try {
+        await auth.signOut()
+    }
+    catch (e) {
+        throw e
+    }
+}
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
 
@@ -99,4 +108,4 @@ onAuthStateChanged(auth, (user) => {
 )
 
 
-export { signUp,signupWithGoogle }
+export { signUp,signupWithGoogle ,signOut}
