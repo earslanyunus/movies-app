@@ -2,11 +2,16 @@ import {Outlet, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
 function App() {
-    //page open and navigate to home
-    const navigate = useNavigate();
+    //if url is / then redirect to /home
+       const navigate = useNavigate()
     useEffect(() => {
-        navigate('/home')
-    }, [])
+        if (window.location.pathname === '/') {
+            navigate('/home')
+        }
+
+    },[]
+    )
+
 
 
 

@@ -7,18 +7,24 @@ import * as Yup from 'yup';
 import File from "../components/input/File.jsx";
 import fullLogo from "../assets/LogoandLogotype.svg";
 import mailIcon from "../assets/mailIcon.svg";
-import {signUp, signupWithGoogle} from "../firebase/index.js";
+import {signIn, signInWithGoogle, signUp, signupWithGoogle} from "../firebase/index.js";
 import {useNavigate} from "react-router-dom";
 
 const signUpSchema = Yup.object().shape({
-    username: Yup.string().min(2, 'Too Short!').max(12, 'Too Long!').required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().min(8, 'Must be at least 8 characters.').max(50, 'Too Long!').required('Required'),
-    image: Yup.mixed().required('Required')
 })
 
-function Signup() {
+function Login() {
     const navigate = useNavigate();
+    const googleSignHandler = async () => {
+        try {
+            await signInWithGoogle
+            navigate('/home')
+        } catch (error) {
+            console.log(`Hata:${error}`)
+        }
+    }
     return (
         // 20 px to rem =
         <div className='px-4 pt-14 pb-8 flex w-full lg:p-0 lg:h-screen lg:max-h-screen lg:min-h-[768px]'>
@@ -26,26 +32,28 @@ function Signup() {
                 <img className='hidden lg:block' src={fullLogo} alt="logo"/>
                 <div className='w-full h-full flex flex-col items-center justify-center lg:w-1/2'>
                     <img className='h-[32px] w-[32px] 2xl:h-[64px] 2xl:w-[64px] lg:hidden' src={logo} alt=""/>
-                    <p className='text-display-xs font-semibold mt-6 lg:self-start'>Create an account</p>
-                    <p className='text-text-md font-normal mt-2 lg:self-start'>Watching alone is enough no more :)</p>
+                    <p className='text-display-xs font-semibold mt-6 lg:self-start'>Login to your account</p>
+                    <p className='text-text-md font-normal mt-2 lg:self-start'>Welcome back! We missed you :)</p>
                     <Formik
                         initialValues={{
-                            username: '',
                             email: '',
                             password: '',
-                            image: null,
+
 
                         }
                         }
                         validationSchema={signUpSchema}
                         onSubmit={async values => {
-
                             try {
-                                await signUp(values.email, values.password, values.username, values.image)
+                                await signIn(values.email, values.password)
                                 navigate('/home')
 
-                            }catch (e) {
-                                console.log(e)
+                            }catch (error) {
+                                console.log(`Hata:${error}`)
+
+
+
+
                             }
                         }
                         }
@@ -53,12 +61,8 @@ function Signup() {
                         {({ handleSubmit}) => {
 
                             return (
-                                <Form onSubmit={handleSubmit} className={'mt-8 flex flex-col gap-5 lg:w-full'}>
-                                    <div>
-                                    <Input label='Username*' name='username' type='text'
-                                           placeholder='Enter your username'/>
-                                    <ErrorMessage name={'username'}/>
-                                    </div>
+                                <Form onSubmit={handleSubmit} className={'mt-8 flex flex-col gap-5 w-full '}>
+
                                     <div>
                                     <Input label='Email*' name='email' type='email' placeholder='Enter your email' extraClass={'mt-5'}/>
                                     <ErrorMessage name={'email'}/>
@@ -68,23 +72,18 @@ function Signup() {
                                            placeholder='Enter your password'/>
                                     <ErrorMessage name={'password'}/>
                                     </div>
-                                    <div>
-                                    <File label={'Profile Picture'} name={'image'}/>
-                                    <ErrorMessage name={'image'}/>
-                                    </div>
-                                    <div className={'mt-1'}>
-                                    <Button  text={'Sign up'} type={'submit'} variant={'primary'} wFull={true}/>
-                                    </div>
+
+                                    <Button extraClass={'mt-1'} text={'Login'} type={'submit'} variant={'primary'} wFull={true}/>
                                 </Form>
                             )
                         }
                         }
                     </Formik>
-                    <Button onClick={signupWithGoogle} text={'Sign up with Google'} type={'button'} variant={'secondary'} wFull={true} isSocial={true} extraClass={'mt-4'}/>
+                    <Button onClick={signInWithGoogle} text={'Sign in with Google'} type={'button'} variant={'secondary'} wFull={true} isSocial={true} extraClass={'mt-4'}/>
 
                     <div className='flex mt-8'>
-                    <p>Already have an account?</p>
-                        <Button onClick={()=>navigate('/login')} text={'Log in'} type={'submit'} variant={'link'} extraClass={'ml-1'}/>
+                    <p>Don’t have an account?</p>
+                        <Button onClick={googleSignHandler} text={'Sign up'} type={'button'} variant={'link'} extraClass={'ml-1'}/>
                     </div>
 
                 </div>
@@ -104,4 +103,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default Login;
