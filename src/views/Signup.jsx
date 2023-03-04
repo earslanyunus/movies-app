@@ -22,7 +22,7 @@ function Signup() {
     return (
         // 20 px to rem =
         <div className='px-4 pt-14 pb-8 flex w-full lg:p-0 lg:h-screen lg:max-h-screen lg:min-h-[768px]'>
-            <div className='flex flex-col items-center justify-between w-full   lg:w-1/2 lg:px-4 lg:pt-14 lg:pb-8'>
+            <div className='flex flex-col items-center justify-between w-full   lg:w-1/2 lg:pr-8 lg:pt-14 lg:pb-8 lg:pl-20'>
                 <img className='hidden lg:block' src={fullLogo} alt="logo"/>
                 <div className='w-full h-full flex flex-col items-center justify-center lg:w-1/2'>
                     <img className='h-[32px] w-[32px] 2xl:h-[64px] 2xl:w-[64px] lg:hidden' src={logo} alt=""/>
@@ -84,7 +84,7 @@ function Signup() {
 
                     <div className='flex mt-8'>
                     <p>Already have an account?</p>
-                        <Button text={'Log in'} type={'submit'} variant={'link'} extraClass={'ml-1'}/>
+                        <Button onClick={()=>navigate('/login')} text={'Log in'} type={'submit'} variant={'link'} extraClass={'ml-1'}/>
                     </div>
 
                 </div>
