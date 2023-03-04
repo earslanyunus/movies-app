@@ -109,9 +109,12 @@ const signIn = async (email, password) => {
 }
 const signInWithGoogle = async () => {
     try {
-
         const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user
+        return user
+
+
 
 
     }
@@ -130,9 +133,8 @@ const signOut = async () => {
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-
-        const uid = user.uid;
-        store.dispatch({ type: 'auth/login', payload: { uid } })
+        const {uid,displayName,email} = user;
+        store.dispatch({ type: 'auth/login', payload: { uid,displayName,email } })
     } else {
         store.dispatch({ type: 'auth/logout' })
 

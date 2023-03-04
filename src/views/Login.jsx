@@ -4,10 +4,9 @@ import Input from "../components/input/Input.jsx";
 import {Formik, Form, ErrorMessage} from "formik";
 import Button from "../components/button/Button.jsx";
 import * as Yup from 'yup';
-import File from "../components/input/File.jsx";
 import fullLogo from "../assets/LogoandLogotype.svg";
 import mailIcon from "../assets/mailIcon.svg";
-import {signIn, signInWithGoogle, signUp, signupWithGoogle} from "../firebase/index.js";
+import {signIn, signInWithGoogle} from "../firebase/index.js";
 import {useNavigate} from "react-router-dom";
 
 const signUpSchema = Yup.object().shape({
@@ -18,8 +17,10 @@ const signUpSchema = Yup.object().shape({
 function Login() {
     const navigate = useNavigate();
     const googleSignHandler = async () => {
+
         try {
-            await signInWithGoogle
+
+            await signInWithGoogle()
             navigate('/home')
         } catch (error) {
             console.log(`Hata:${error}`)
@@ -79,11 +80,11 @@ function Login() {
                         }
                         }
                     </Formik>
-                    <Button onClick={signInWithGoogle} text={'Sign in with Google'} type={'button'} variant={'secondary'} wFull={true} isSocial={true} extraClass={'mt-4'}/>
+                    <Button onClick={googleSignHandler} text={'Sign in with Google'} type={'button'} variant={'secondary'} wFull={true} isSocial={true} extraClass={'mt-4'}/>
 
                     <div className='flex mt-8'>
                     <p>Don’t have an account?</p>
-                        <Button onClick={googleSignHandler} text={'Sign up'} type={'button'} variant={'link'} extraClass={'ml-1'}/>
+                        <Button onClick={()=>navigate('/signup')} text={'Sign up'} type={'button'} variant={'link'} extraClass={'ml-1'}/>
                     </div>
 
                 </div>
