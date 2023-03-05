@@ -14,7 +14,6 @@ import {doc, getFirestore, setDoc} from "firebase/firestore";
 import store from "../store/index.js";
 import {useNavigate} from "react-router-dom";
 
-console.log(process.env)
 
 const firebaseConfig={
     apiKey:import.meta.env.VITE_FIREBASE_API_KEY,
