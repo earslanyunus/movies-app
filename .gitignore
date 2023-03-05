@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 *.production
-tailwind.config.cjs
 
 
 # Editor directories and files
