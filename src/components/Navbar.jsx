@@ -29,19 +29,19 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
 
     return (
         <div className='w-screen flex'>
-            <nav className={isMenuOpen?'w-[80%] flex flex-col justify-between h-screen border border-b border-gray-200 p-4':'flex  justify-between items-center w-full border border-b border-gray-200 p-4'}>
+            <nav className={isMenuOpen?'w-[80%] flex flex-col justify-between h-screen border border-b border-gray-200 p-4':'flex  justify-between items-center w-full border border-b border-gray-200 p-4 '}>
                 {/*NAVBAR TOP AREA*/}
-                <div className='flex flex-col gap-5 items-start'>
+                <div className='flex flex-col gap-5 items-start lg:flex-row lg:items-center'>
                     <img src={logo} className='h-8' alt=""/>
                     {/*NAVBAR SEARCH*/}
-                    <div className={isMenuOpen?'relative w-full':'hidden'}>
+                    <div className={isMenuOpen?'relative w-full':'hidden lg:block lg:relative '}>
                         <input type="text" placeholder='Search' name="" id=""
                                className='w-full px-3.5 w-full py-2.5 pl-11 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-500 placeholder:text-text-md placeholder:font-normal focus:primary focus:shadow-[0px_0px_0px_4px_#F4EBFF]'/>
                         <span
                             className="material-symbols-rounded absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">search</span>
                     </div>
                     {/*NAVBAR LINK*/}
-                    <div className={isMenuOpen?'flex flex-col gap-1 w-full':'hidden'}>
+                    <div className={isMenuOpen?'flex flex-col gap-1 w-full':'hidden lg:block lg:flex-row lg:flex'}>
                         <div className='w-full'>
                             <NavLink to={'/home'} className={({isActive}) =>
                                 `flex items-center  py-2 px-3 w-full gap-3 text-text-md font-semibold text-gray-700 hover:bg-gray-50 hover:text-gray-900 ${isActive && 'bg-gray-50 text-gray-900'}`
@@ -68,12 +68,12 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
                 </div>
                 {/*NAVBAR MENU BUTTON*/}
 
-                <button className={isMenuOpen?'hidden':'h-auto flex'} onClick={menuButtonHandler}><span className="material-symbols-rounded text-gray-500">menu</span></button>
+                <button className={isMenuOpen?'hidden':'h-auto flex lg:hidden'} onClick={menuButtonHandler}><span className="material-symbols-rounded text-gray-500">menu</span></button>
 
                 {/*  NAVBAR BOTTOM AREA  */}
-                <div className={isMenuOpen?'w-full':'hidden'}>
+                <div className={isMenuOpen?'w-full':'hidden lg:block'}>
                     {isAuth && (
-                        <div className='flex justify-between w-full border-t pt-6'>
+                        <div className='flex justify-between w-full border-t pt-6 lg:border-0 lg:pt-0'>
                             <NavLink to={'/profile'} className='flex gap-3'>
                                 <img src={profilePic} alt="" className='rounded-full h-10'/>
                                 <div className='flex flex-col'>
@@ -96,7 +96,7 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
             </nav>
             {/*NAVBAR CLOSE SIDE*/}
             <div className={isMenuOpen?'w-[20%] bg-gray-500 h-screen flex justify-center items-start pt-4':'hidden'}>
-                <button onClick={menuButtonHandler}><span className="material-symbols-rounded text-white">close</span></button>
+                <button onClick={menuButtonHandler} ><span className="material-symbols-rounded text-white">close</span></button>
             </div>
         </div>
     );
