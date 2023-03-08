@@ -28,8 +28,8 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
     }
 
     return (
-        <div className='w-screen flex'>
-            <nav className={isMenuOpen?'w-[80%] flex flex-col justify-between h-screen border border-b border-gray-200 p-4':'flex  justify-between items-center w-full border border-b border-gray-200 p-4 '}>
+        <div className=' flex  border-b border-gray-200 mb-6'>
+            <nav className={isMenuOpen?'w-[80vw] flex flex-col justify-between h-screen  p-4':'flex  justify-between items-center w-full  p-4 container mx-auto '}>
                 {/*NAVBAR TOP AREA*/}
                 <div className='flex flex-col gap-5 items-start lg:flex-row lg:items-center'>
                     <img src={logo} className='h-8' alt=""/>
@@ -73,7 +73,7 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
                 {/*  NAVBAR BOTTOM AREA  */}
                 <div className={isMenuOpen?'w-full':'hidden lg:block'}>
                     {isAuth && (
-                        <div className='flex justify-between w-full border-t pt-6 lg:border-0 lg:pt-0'>
+                        <div className='flex justify-between w-full border-t pt-6 lg:border-0 lg:pt-0 gap-6'>
                             <NavLink to={'/profile'} className='flex gap-3'>
                                 <img src={profilePic} alt="" className='rounded-full h-10'/>
                                 <div className='flex flex-col'>
@@ -95,7 +95,7 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
 
             </nav>
             {/*NAVBAR CLOSE SIDE*/}
-            <div className={isMenuOpen?'w-[20%] bg-gray-500 h-screen flex justify-center items-start pt-4':'hidden'}>
+            <div className={isMenuOpen?'w-[20vw] bg-gray-500 h-screen flex justify-center items-start pt-4':'hidden'}>
                 <button onClick={menuButtonHandler} ><span className="material-symbols-rounded text-white">close</span></button>
             </div>
         </div>
