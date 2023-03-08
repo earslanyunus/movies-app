@@ -3,6 +3,12 @@ module.exports = {
     content: ["./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",],
     theme: {
+        container:{
+            center:true,
+            padding:{
+                DEFAULT:'1rem',
+            }
+        },
         fontSize: {
             'text-xs': ['0.75rem', '1.125rem'],
             'text-sm': ['0.875rem', '1.25rem'],

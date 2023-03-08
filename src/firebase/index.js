@@ -10,7 +10,7 @@ import {
     updateProfile
 } from "firebase/auth";
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage";
-import {doc, getFirestore, setDoc} from "firebase/firestore";
+import {doc, getFirestore, setDoc,getDoc} from "firebase/firestore";
 import store from "../store/index.js";
 import {useNavigate} from "react-router-dom";
 
@@ -41,6 +41,17 @@ const uploadImage = async (file,folder,fileName) => {
     await uploadBytesResumable(storageRef, file)
     return await getDownloadURL(storageRef)
 }
+//get profile picture from firebase firestore with uid
+const getProfilePicture = async (uid) => {
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        return docSnap.data().photoURL
+    } else {
+        return null
+    }
+}
+
 
 const signUp = async (email, password,username,photo) => {
     try {
@@ -143,4 +154,4 @@ onAuthStateChanged(auth, (user) => {
 )
 
 
-export { signUp,signupWithGoogle ,signOut,signIn,signInWithGoogle}
+export { signUp,signupWithGoogle ,signOut,signIn,signInWithGoogle,getProfilePicture}
