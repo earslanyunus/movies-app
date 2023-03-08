@@ -20,7 +20,8 @@ function Home(props) {
         <div>
 
             <div className='h-[30vh]'>
-            <PerView items={popularMovies}/>
+                <p className='container mx-auto text-display-md  font-semibold text-gray-900 mb-3'>Popular Movies</p>
+            <PerView slidesPerView={'auto'} spaceBetween={12}  items={popularMovies} arrows={true}/>
             </div>
         </div>
     );
