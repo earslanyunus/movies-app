@@ -9,6 +9,7 @@ import PrivateRoute from "./router/PrivateRoute.jsx";
 import Login from "./views/Login.jsx";
 import Home from "./views/Home.jsx";
 import './style.css'
+import MovieDetail from "./views/MovieDetail.jsx";
 const router = createBrowserRouter([{
     path: '/',
     element: <App/>,
@@ -26,6 +27,10 @@ const router = createBrowserRouter([{
             path: '/login',
             element:<Login/>
 
+        },
+        {
+            path:'/movie/:id',
+            element:<MovieDetail/>
         }
     ]
 }])
