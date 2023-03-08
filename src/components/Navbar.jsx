@@ -29,10 +29,11 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
 
     return (
         <div className=' flex  border-b border-gray-200 mb-6'>
-            <nav className={isMenuOpen?'w-[80vw] flex flex-col justify-between h-screen  p-4':'flex  justify-between items-center w-full  p-4 container mx-auto '}>
+            <nav className={isMenuOpen?'w-[80vw] flex flex-col justify-between h-screen  py-4':'flex  justify-between items-center w-full  py-4 container mx-auto '}>
                 {/*NAVBAR TOP AREA*/}
                 <div className='flex flex-col gap-5 items-start lg:flex-row lg:items-center'>
-                    <img src={logo} className='h-8' alt=""/>
+
+                    <NavLink to={'/home'}><img src={logo} className='h-8' alt=""/></NavLink>
                     {/*NAVBAR SEARCH*/}
                     <div className={isMenuOpen?'relative w-full':'hidden lg:block lg:relative '}>
                         <input type="text" placeholder='Search' name="" id=""
