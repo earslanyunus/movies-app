@@ -19,9 +19,11 @@ function Home(props) {
     return (
         <div>
 
+
             <div className='h-[30vh]'>
             <PerView items={popularMovies}/>
             </div>
+
         </div>
     );
 }
