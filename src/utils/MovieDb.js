@@ -18,6 +18,8 @@ const getMovieCredits = async (id) => {
 const getMovieDetail = async (id) => {
     const movie = await getMovie(id);
     const credits = await getMovieCredits(id);
+    credits.cast.sort((a, b) => b.popularity - a.popularity)
+    credits.cast = credits.cast.slice(0, 20)
     return {
         ...movie,
         ...credits
