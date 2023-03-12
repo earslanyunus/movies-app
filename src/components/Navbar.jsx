@@ -22,6 +22,7 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
     }, [user])
     const buttonHandler = () => {
         navigate('/login')
+        setIsMenuOpen(false)
     }
     const menuButtonHandler = () => {
         setIsMenuOpen(!isMenuOpen)
@@ -90,7 +91,7 @@ function Navbar({setIsMenuOpen,isMenuOpen}) {
                     )
                     }
                     {!isAuth && (
-                        <Button onClick={buttonHandler} variant={'primary'} text='Login'></Button>
+                        <Button type={'button'} onClick={buttonHandler} variant={'primary'} text='Login'></Button>
                     )}
                 </div>
 
