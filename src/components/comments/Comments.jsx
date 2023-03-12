@@ -1,14 +1,15 @@
 import React from 'react';
 
 function Comments({comment}) {
+
     return (
-        <div className='flex'>
+        <div className='flex gap-3'>
             {/*profile picture*/}
-            <div>
-                <img src={comment.profilePicture} alt='' className='w-10 h-10 rounded-full' />
+            <div className='w-10 h-10 flex'>
+                <img src={comment.profilePicture} alt='' className='w-full  rounded-full' />
             </div>
             {/*comment and info*/}
-            <div className='flex flex-col'>
+            <div className='flex flex-col w-full'>
                 {/*username and day*/}
                 <div className='flex justify-between'>
                     <p>{comment.username}</p>
@@ -16,6 +17,7 @@ function Comments({comment}) {
                 </div>
                     {/*comment*/}
                     <div>
+                        {/*if character count>50 */}
                         <p>{comment.comment}</p>
                     </div>
                 </div>

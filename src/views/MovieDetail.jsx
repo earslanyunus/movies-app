@@ -4,6 +4,9 @@ import {getMovieDetail, getSimilarMovies} from "../utils/MovieDb.js";
 import {MdBookmarkBorder, MdFavoriteBorder, MdStarOutline, TbPlayerPlay} from "react-icons/all.js";
 import PerViewGlass from "../components/swiper/PerViewGlass.jsx";
 import PerView from "../components/swiper/PerView.jsx";
+import Comments from "../components/comments/Comments.jsx";
+import CommentList from "../components/comments/CommentList.jsx";
+import Button from "../components/button/Button.jsx";
 
 function MovieDetail(props) {
     const [movie, setMovie] = useState(null);
@@ -98,13 +101,15 @@ function MovieDetail(props) {
                 <PerViewGlass slidesPerView={'auto'} spaceBetween={12} arrows={true} items={movie}/>
             </div>
             {/*SIMILAR SWIPER*/}
-            <div className='mt-6 h-[50vh]'>
+            <div className='mt-6  flex flex-col h-[50vh] min-h-[450px] max-h-[600px]'>
                 <p className='text-display-md font-semibold text-gray-700'>Similar</p>
                 <PerView isReload={true} slidesPerView={'auto'} spaceBetween={12} arrows={true} items={similarMovies}/>
             </div>
             {/*COMMENT SECTION*/}
             <div className='mt-6'>
-                <p className='text-display-md font-semibold text-gray-700'>Comments</p>
+                    <p className='text-display-md font-semibold text-gray-700'>Comments</p>
+
+                <CommentList/>
             </div>
         </div>
     );
