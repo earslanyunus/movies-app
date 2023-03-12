@@ -7,7 +7,7 @@ import swiperRightArrow from '../../assets/carouse_right_arrow.svg'
 import {NavLink} from "react-router-dom";
 
 
-function PerView({items,spaceBetween,slidesPerView,extraClass='',arrows=false}) {
+function PerView({items,spaceBetween,slidesPerView,extraClass='',arrows=false,isReload=false}) {
     const leftArrow = useRef()
     const rightArrow = useRef()
     return (
@@ -32,7 +32,7 @@ function PerView({items,spaceBetween,slidesPerView,extraClass='',arrows=false}) 
         >
             {items.map((item) => (
                 <SwiperSlide key={item.id} className='h-full w-auto'>
-                    <NavLink to={`/movie/${item.id}`}><img src={`https://image.tmdb.org/t/p/original/${item.poster_path}`} alt={item.title} className='h-full' /></NavLink>
+                    <NavLink reloadDocument={isReload}  to={`/movie/${item.id}`}><img src={`https://image.tmdb.org/t/p/original/${item.poster_path}`} alt={item.title} className='h-full' /></NavLink>
                 </SwiperSlide>
             ))}
 
