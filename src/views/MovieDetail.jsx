@@ -1,33 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
-import {getMovieDetail} from "../utils/MovieDb.js";
-import Button from "../components/button/Button.jsx";
-import {
-    IoPlayOutline,
-    MdBookmarkAdd,
-    MdBookmarkBorder,
-    MdFavorite,
-    MdFavoriteBorder,
-    MdPlayArrow, MdStarOutline, TbPlayerPlay
-} from "react-icons/all.js";
+import {getMovieDetail, getSimilarMovies} from "../utils/MovieDb.js";
+import {MdBookmarkBorder, MdFavoriteBorder, MdStarOutline, TbPlayerPlay} from "react-icons/all.js";
 import PerViewGlass from "../components/swiper/PerViewGlass.jsx";
 import PerView from "../components/swiper/PerView.jsx";
 
 function MovieDetail(props) {
     const [movie, setMovie] = useState(null);
+    const [similarMovies, setSimilarMovies] = useState([]);
     const director = movie?.crew.filter((crew) => crew.job === 'Director').map((crew) => crew.name).join(', ');
     const story = movie?.crew.filter((crew) => crew.job === 'Screenplay').map((crew) => crew.name).join(', ');
     const {id} = useParams();
     useEffect(() => {
+        console.log('first render')
         getMovieDetail(id).then((data) => {
-                setMovie(data)
-
-
-            }
-        )
+            setMovie(data)
+        })
+        getSimilarMovies(id).then((data) => {
+            setSimilarMovies(data)
+        })
 
 
     }, [])
+
     return (
         <div className='container flex flex-col'>
             {/*IMAGE AREA*/}
@@ -105,7 +100,11 @@ function MovieDetail(props) {
             {/*SIMILAR SWIPER*/}
             <div className='mt-6 h-[50vh]'>
                 <p className='text-display-md font-semibold text-gray-700'>Similar</p>
-                {/*<PerView slidesPerView={'auto'} spaceBetween={12} arrows={true} items={movie}/>*/}
+                <PerView isReload={true} slidesPerView={'auto'} spaceBetween={12} arrows={true} items={similarMovies}/>
+            </div>
+            {/*COMMENT SECTION*/}
+            <div className='mt-6'>
+                <p className='text-display-md font-semibold text-gray-700'>Comments</p>
             </div>
         </div>
     );
