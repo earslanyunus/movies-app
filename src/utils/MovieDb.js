@@ -25,5 +25,11 @@ const getMovieDetail = async (id) => {
         ...credits
     }
 }
+const getSimilarMovies = async (id) => {
+    const url = `${API_URL}/movie/${id}/similar?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&language=en-US&page=1`;
+    const response = await fetch(url);
+    const data =  await response.json();
+    return data.results
+}
 
-export { getPopularMovies,getMovie,getMovieDetail }
+export { getPopularMovies,getMovie,getMovieDetail,getSimilarMovies }
