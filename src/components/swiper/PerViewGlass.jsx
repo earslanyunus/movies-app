@@ -5,9 +5,11 @@ import "swiper/css";
 import swiperLeftArrow from '../../assets/carouse_left_arrow.svg'
 import swiperRightArrow from '../../assets/carouse_right_arrow.svg'
 import {NavLink} from "react-router-dom";
+import {MdArrowOutward} from "react-icons/all.js";
 
 
-function PerView({items,spaceBetween,slidesPerView,extraClass='',arrows=false,isReload=false}) {
+function PerViewGlass({items,spaceBetween,slidesPerView,extraClass='',arrows=false}) {
+
     const leftArrow = useRef()
     const rightArrow = useRef()
     return (
@@ -30,9 +32,16 @@ function PerView({items,spaceBetween,slidesPerView,extraClass='',arrows=false,is
         modules={[Navigation]}
 
         >
-            {items.map((item) => (
-                <SwiperSlide key={item.id} className='h-full w-auto'>
-                    <NavLink reloadDocument={isReload}  to={`/movie/${item.id}`}><img src={`https://image.tmdb.org/t/p/original/${item.poster_path}`} alt={item.title} className='h-full' /></NavLink>
+            {items?.cast.map((item) => (
+                <SwiperSlide key={item.id} className='  h-full w-auto relative'>
+                        <img src={`https://image.tmdb.org/t/p/original/${item.profile_path}`} alt={item.title} className='h-full' />
+                    <NavLink to={`/movie/${item.id}`} className='absolute bottom-0 w-full  bg-white bg-opacity-30 backdrop-blur-md border-t px-5 pt-6 pb-8'>
+                        <div className='flex justify-between items-center'>
+                            <p className='text-display-xs font-semibold text-white'>{item?.name}</p>
+                            <button type={'button'} className='text-[1.5rem] text-white'><MdArrowOutward/></button>
+                        </div>
+                        <p className='text-text-md font-semibold text-white'>{item?.character}</p>
+                    </NavLink>
                 </SwiperSlide>
             ))}
 
@@ -51,4 +60,4 @@ function PerView({items,spaceBetween,slidesPerView,extraClass='',arrows=false,is
     );
 }
 
-export default PerView;
+export default PerViewGlass;

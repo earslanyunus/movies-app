@@ -9,10 +9,7 @@ function Home(props) {
             setPopularMovies(data.results);
         }
         )
-        getMovie(505642).then((data) => {
-            console.log(data);
-        }
-        )
+
 
     }, []);
 
