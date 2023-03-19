@@ -10,6 +10,10 @@ import Login from "./views/Login.jsx";
 import Home from "./views/Home.jsx";
 import './style.css'
 import MovieDetail from "./views/MovieDetail.jsx";
+import CastDetail from "./views/CastDetail.jsx";
+import ExploreMovie from "./views/ExploreMovie.jsx";
+
+
 const router = createBrowserRouter([{
     path: '/',
     element: <App/>,
@@ -31,7 +35,16 @@ const router = createBrowserRouter([{
         {
             path:'/movie/:id',
             element:<MovieDetail/>
+        },
+        {
+            path: '/cast/:id',
+            element:<CastDetail/>
+        },
+        {
+            path: 'explore',
+            element: <ExploreMovie/>,
         }
+
     ]
 }])
 

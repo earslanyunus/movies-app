@@ -32,4 +32,32 @@ const getSimilarMovies = async (id) => {
     return data.results
 }
 
-export { getPopularMovies,getMovie,getMovieDetail,getSimilarMovies }
+const getPersonMovies = async (id) => {
+    const url = `${API_URL}/person/${id}/movie_credits?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&language=en-US`;
+    const response = await fetch(url);
+    return await response.json();
+}
+const getPersonDetails = async (id) => {
+    const url = `${API_URL}/person/${id}?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&language=en-US`;
+    const response = await fetch(url);
+    return await response.json();
+}
+const getTopRatedMovies = async () => {
+    const url = `${API_URL}/movie/top_rated?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&language=en-US&page=1`;
+    const response = await fetch(url);
+    return await response.json();
+}
+const getUpcomingMovies = async () => {
+    const url = `${API_URL}/movie/upcoming?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&language=en-US`;
+    const response = await fetch(url);
+    return await response.json();
+}
+const getDiscoverMovies = async (page,vote,year) => {
+    const url = `${API_URL}/discover/movie?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&vote_average.gte=${vote}&primary_release_year=${year}&page=${page} `;
+    const response = await fetch(url);
+    return await response.json();
+
+}
+
+
+export { getPopularMovies,getMovie,getMovieDetail,getSimilarMovies,getPersonMovies,getPersonDetails,getTopRatedMovies,getUpcomingMovies,getDiscoverMovies }
