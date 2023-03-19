@@ -35,7 +35,7 @@ function PerViewGlass({items,spaceBetween,slidesPerView,extraClass='',arrows=fal
             {items?.cast.map((item) => (
                 <SwiperSlide key={item.id} className='  h-full w-auto relative'>
                         <img src={`https://image.tmdb.org/t/p/original/${item.profile_path}`} alt={item.title} className='h-full' />
-                    <NavLink to={`/movie/${item.id}`} className='absolute bottom-0 w-full  bg-white bg-opacity-30 backdrop-blur-md border-t px-5 pt-6 pb-8'>
+                    <NavLink to={`/cast/${item.id}`} className='absolute bottom-0 w-full  bg-white bg-opacity-30 backdrop-blur-md border-t px-5 pt-6 pb-8'>
                         <div className='flex justify-between items-center'>
                             <p className='text-display-xs font-semibold text-white'>{item?.name}</p>
                             <button type={'button'} className='text-[1.5rem] text-white'><MdArrowOutward/></button>
