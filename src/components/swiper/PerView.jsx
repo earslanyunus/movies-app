@@ -30,7 +30,7 @@ function PerView({items,spaceBetween,slidesPerView,extraClass='',arrows=false,is
         modules={[Navigation]}
 
         >
-            {items.map((item) => (
+            {items?.map((item) => (
                 <SwiperSlide key={item.id} className='h-full w-auto'>
                     <NavLink reloadDocument={isReload}  to={`/movie/${item.id}`}><img src={`https://image.tmdb.org/t/p/original/${item.poster_path}`} alt={item.title} className='h-full' /></NavLink>
                 </SwiperSlide>
