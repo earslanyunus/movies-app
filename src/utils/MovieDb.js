@@ -58,6 +58,11 @@ const getDiscoverMovies = async (page,vote,year) => {
     return await response.json();
 
 }
+const getSearchMovies = async (query) => {
+    const url = `${API_URL}/search/movie?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&query=${query}`;
+    const response = await fetch(url);
+    return await response.json();
+}
 
 
-export { getPopularMovies,getMovie,getMovieDetail,getSimilarMovies,getPersonMovies,getPersonDetails,getTopRatedMovies,getUpcomingMovies,getDiscoverMovies }
+export { getPopularMovies,getMovie,getMovieDetail,getSimilarMovies,getPersonMovies,getPersonDetails,getTopRatedMovies,getUpcomingMovies,getDiscoverMovies, getSearchMovies }
