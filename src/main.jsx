@@ -12,6 +12,7 @@ import './style.css'
 import MovieDetail from "./views/MovieDetail.jsx";
 import CastDetail from "./views/CastDetail.jsx";
 import ExploreMovie from "./views/ExploreMovie.jsx";
+import SearchResults from "./views/SearchResults.jsx";
 
 
 const router = createBrowserRouter([{
@@ -43,6 +44,10 @@ const router = createBrowserRouter([{
         {
             path: 'explore',
             element: <ExploreMovie/>,
+        },
+        {
+            path: '/search/:query',
+            element: <SearchResults/>,
         }
 
     ]
