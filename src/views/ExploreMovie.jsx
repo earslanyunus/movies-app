@@ -1,9 +1,11 @@
 import React from 'react';
 import {getDiscoverMovies} from "../utils/MovieDb.js";
+import MovieCard from "../components/MovieCard.jsx";
 
-function ExploreMovie(props) {
+function ExploreMovie() {
     const [year, setYear] = React.useState(2021);
-    const [point, setPoint] = React.useState(0);
+    const [point, setPoint] = React.useState('default');
+    const [movies, setMovies] = React.useState([]);
     const pointHandler = (e) => {
         console.log(e.target.value)
         setPoint(e.target.value);
@@ -13,38 +15,45 @@ function ExploreMovie(props) {
         setYear(e.target.value);
     }
     const sendHandler = () => {
-        getDiscoverMovies(1,point,year).then((data) => {
-            console.log(data);
+        getDiscoverMovies(1, point, year).then((data) => {
+                setMovies(data.results);
 
-        }
+            }
         )
     }
     return (
+        <>
+            <div className='container'>
+                {/*    input areas*/}
+                <div className='flex flex-col gap-6 md:flex-row justify-between  items-center justify-center'>
+                    <div className='w-full md:w-auto'>
+                    <input  type="number" name="" id="" className='input-text mb-3' value={year} onChange={yearHandler}/>
+                    <select title={'select'} placeholder={'test'} className='select-input' value={point} onChange={pointHandler}>
+                        <option disabled  value="default">Please select point</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
 
-        <div className='container'>
-            {/*    input areas*/}
-            <div className='flex flex-col items-center justify-center'>
-                <input type="number" name="" id="" className='border' value={year} onChange={yearHandler}/>
-                <select value={point} onChange={pointHandler}>
-                    <option value="default" >please select point</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
 
+                    </select>
+                    </div>
+                    <button className={'btn-primary w-full md:w-auto'} onClick={sendHandler}>Send</button>
+                </div>
+                <p className='mx-auto text-display-md  font-semibold text-gray-900 mb-3 mt-6'>Customized Film Recommendations</p>
+                <MovieCard movies={movies}/>
 
-                </select>
             </div>
-            <button onClick={sendHandler}>Send</button>
 
-        {/*    todo add styles for ui*/}
-        {/*    todo add card element*/}
-        </div>
+
+
+        </>
+    //     todo add pagination for movies
     );
 }
 
