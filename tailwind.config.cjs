@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin.js");
 module.exports = {
     content: ["./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",],
@@ -69,5 +70,48 @@ module.exports = {
 
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(function({addComponents,theme}){
+                console.log(theme)
+            addComponents({
+                // w-full rounded text-gray-900 py-2.5 px-3.5 rounded-lg border border-gray-300  placeholder:text-gray-500 focus:border-primary-300  focus:shadow-[0px_0px_0px_4px_#F4EBFF]
+                '.input-text':{
+                    width:'100%',
+                    borderRadius:'0.375rem',
+                    color:'#101828',
+                    padding: '0.625rem 0.9375rem',
+                    border:'1px solid #d0d5dd',
+                    '&:placeholder':{
+                        color:'#667085'
+                    },
+                    '&:focus':{
+                      border: '1px solid #1f3153',
+                      boxShadow: '0px 0px 0px 4px #F4EBFF'
+                    }
+                },
+                '.select-input':{
+                    width:'100%',
+                    borderRadius: '0.375rem',
+                    border:'1px solid #D0D5DD',
+                    padding: '0.625rem 0.9375rem',
+                },
+                '.btn-primary':{
+                    //styles:py-2.5 px-[1.125rem] rounded-lg text-text-md font-semibold bg-primary-600  text-white'
+                    padding: '0.625rem 1.125rem',
+                    borderRadius: '0.375rem',
+                    color: '#fff',
+                    backgroundColor: '#05173A',
+                    fontWeight: '600',
+                    fontSize: '1rem',
+                    lineHeight: '1.25rem',
+                    '&:hover':{
+                        backgroundColor: '#051533',
+                    }
+
+
+                }
+            })
+        }
+        )
+    ],
 }
